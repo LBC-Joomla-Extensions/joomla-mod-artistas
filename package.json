@@ -1,7 +1,7 @@
 {
-  "name": "joomla-base-module",
+  "name": "joomla-mod-artistas",
   "version": "1.0.0",
-  "description": "Una módulo base para Joomla.",
+  "description": "Módulo Joomla para showcase de artistas",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
@@ -9,17 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LBC-Starter-Kits/Joomla-Module-Starter-Kit.git.git"
+    "url": "git+https://github.com/LBC-Joomla-Extensions/joomla-mod-artistas.git"
   },
   "keywords": [],
   "author": "Luis Breña Calvo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LBC-Starter-Kits/Joomla-Module-Starter-Kit.git/issues"
+    "url": "https://github.com/LBC-Joomla-Extensions/joomla-mod-artistas.git/issues"
   },
-  "homepage": "https://github.com/LBC-Starter-Kits/Joomla-Module-Starter-Kit.git#readme",
+  "homepage": "https://github.com/LBC-Joomla-Extensions/joomla-mod-artistas.git#readme",
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.18.2",
     "@babel/polyfill": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "babel-loader": "^8.2.3",
@@ -33,5 +35,8 @@
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "zip-webpack-plugin": "^4.0.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.18.3"
   }
 }
