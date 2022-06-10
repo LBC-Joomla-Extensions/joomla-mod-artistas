@@ -4,7 +4,7 @@ async function showArtist(index){
     // var texto=jQuery("#artist-item-page-"+index).html();
     var texto = document.getElementById("artist-item-page-"+index).innerHTML;
 
-    // texto = await activaSoundCloud(texto);
+    texto = await activaSoundCloud(texto);
     document.getElementById("artist-overlay-inner").innerHTML = texto;
     document.getElementById("artist-overlay").classList.remove("invisible");
 
