@@ -8,13 +8,23 @@ require_once __DIR__ . "/vendor/autoload.php";
 
 use Dickinsonjl\Lorum\Lorum;
 
-class modBase{
+class modArtistas{
 
-    public static function lorem(){
-        $lorum = new Lorum();
-        $lorum->buildCache();
+    
+    public static function getArticulos(&$params){
+        $db = JFactory::getDbo();
+        $id = $params["categoria"];
 
-        return $lorum->giveMeParagraph();
+        $query = $db->getQuery(true);
+        $query->select('*');
+        $query->from('#__content');
+        $query->where('catid="'.$id.'" AND language="'. JFactory::getLanguage()->getTag() . '" AND state="1"');
+
+        $db->setQuery((string)$query);
+        $res = $db->loadObjectList();
+
+        return $res;
     }
+    
 }
 ?>
