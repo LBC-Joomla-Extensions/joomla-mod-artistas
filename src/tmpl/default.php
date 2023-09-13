@@ -16,37 +16,46 @@ require_once __DIR__ . "/../helper.php";
 $list=modArtistas::getArticulos($params);
 $res=array();
 
-echo "<div class='artist-outer-wrapper'>";
-echo "<div class='artist-title'><h3 class='artist-title-text'>Headliners</h3></div>";
-echo "<div class='artist-inner-wrapper'>";
+?>
+
+<div class='artist-wrapper'>
+
+<?php
+
 $i=0;
-foreach($list as $l){    
-    $aux=json_decode($l->images);
-    $res[$i]["titulo"]=$l->title;
-    $res[$i]["imagen"]=$aux->image_intro;
-    $res[$i]["fulltext"]=$l->fulltext;
+foreach($list as $item){ 
+    $aux=json_decode($item->images);
+    $res[$i]["titulo"]=$item->title;
+    $res[$i]["intro"]=$aux->image_intro;
+    $res[$i]["imagen"]=$aux->image_fulltext;
+    $res[$i]["fulltext"]=$item->fulltext;
+?>
+        <div class="artist-item">
+            <img 
+                id='artist-item-image-<?= $i ?>'
+                class="artist-item__image"
+                src='<?= JURI::base() . $res[$i]["intro"] ?>'
+                onclick='showArtist(<?= $i ?>)'
+            />
+            <h3 class="artist-item__title"> <?= strtoupper($item->title) ?></h3>
+        </div>
+        <div 
+            id='artist-item-page-<?= $i ?>' 
+            class='artist-item-page invisible'>
 
-    echo "<div class='artist-item'>";
-    echo "<img id='artist-item-image-" . $i . "' class='artist-item-image' src='" . JURI::base() . $res[$i]["imagen"] . "' onclick='showArtist(" . $i . ")'/>";
-    echo "</div>";
-
-    echo "<div id='artist-item-page-" . $i . "' class='artist-item-page invisible'>" . $res[$i]["fulltext"] . "</div>";
-
+            <img src='/<?= $res[$i]["imagen"] ?>' alt='<?= $item->title ?>'/>
+            <?= $res[$i]["fulltext"] ?>
+        </div>
+<?php
     $i++;
 }
-
-echo "</div>
-    </div>";
-
-/*
-echo "<div class='artist-full-lineup-wrapper'>
-        <img class='artist-full-lineup-imagen' src='" . JURI::base() . "./images/2020/modulos/lineup.jpg' />
-    </div>";
-*/
-echo "<div id='artist-overlay' class='artist-overlay invisible'>
-        <div id='artist-overlay-inner'> 
-        
-        </div>
-        <div class='artist-overlay-btn-cerrar' onclick='cerrarOverlay()'>X</div>
-    </div>";
 ?>
+
+</div>
+
+<div id='artist-overlay' class='artist-overlay invisible'>
+    <div id='artist-overlay-inner' class='artist-overlay__inner'> 
+    
+    </div>
+    <div class='artist-overlay__btn' onclick='cerrarOverlay()'>X</div>
+</div>

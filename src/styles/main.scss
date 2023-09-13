@@ -3,57 +3,47 @@
 // 1. Configuration and helpers
 @import 'abstracts';
 
-// 2. Importar componentes
-@import 'components';
-
-
 :root{
     --contenido:"headliners";
 }
 
-.artist-inner-wrapper{
-    width: 100%;
+.artist{
 
-    display:flex;
-    justify-content: center;
-    flex-wrap:wrap;
-    margin-top:1rem;
+    &-wrapper{
+        width: 100%;
+    
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    &-item{    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__image{
+            object-fit: contain;
+            max-width: 100%;
+            border-radius:50%;
+            height: 250px;
+            width: 250px;
+            box-shadow: 0px 0px 5px 1px orange;
+            transition: .6s;
+
+            &:hover{
+                cursor: pointer;
+                box-shadow: 0px 0px 5px 5px orange;
+            }
+        }
+
+        &__title{
+            text-align: center;
+            color:white;
+        }
+    }
 }
 
-.artist-outer-wrapper::before{
-    content: var(--contenido);       
-    display: none;   
-}
-
-.artist-outer-wrapper::after{    
-    content: var(--contenido);     
-    display: none;   
-}
-
-.artist-title{
-    position:relative;
-    z-index:2;
-    display: table;
-    height: 3rem;
-}
-
-.artist-title-text{
-    font-size:0rem;
-}
-
-.artist-item{
-    width: 100%;
-    margin:1rem;
-}
-
-.artist-item-image{
-    object-fit: contain;
-    max-width: 100%;
-}
-
-.artist-item-image:hover{
-    cursor: pointer;
-}
 
 .invisible{
     display:none !important;
@@ -72,59 +62,64 @@
     display:flex;
     justify-content: center;
     align-items: center;
+
+    &__btn {
+        position: absolute;
+        top:1rem;
+        right:1rem;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+    
+        background: rgba(0,0,0,0);
+        border: 2px solid var(--main-color);
+        color:var(--main-color);
+        text-align: center;
+        font-size:1.7rem;
+        line-height: 1.2;
+
+        &:hover{
+            cursor:pointer;
+        }
+    }
+
+    &__inner{
+        overflow-y:auto;
+        overflow-x:hidden;
+        height:90vh;
+        width:90%;
+        // background-color:black;
+        padding:3rem;
+
+        background: rgba( 25, 23, 23, 0.75 );
+        box-shadow: 0 8px 32px 0 rgba(92, 61, 35, 0.37);
+        backdrop-filter: blur( 4px );
+        -webkit-backdrop-filter: blur( 4px );
+        border-radius: 10px;
+
+        &::-webkit-scrollbar{
+            width: 5px;
+        }
+        
+        &::-webkit-scrollbar-track{
+            background: black;
+        }
+        
+        &::-webkit-scrollbar-thumb{
+            background: var(--main-color);
+        }
+
+        & > p {
+            display:block;
+            width:100%;    
+            text-align: justify !important;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
 }
-
-.artist-overlay-btn-cerrar {
-    position: absolute;
-    top:1rem;
-    right:1rem;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-
-    background: rgba(0,0,0,0);
-    border: 2px solid var(--main-color);
-    color:var(--main-color);
-    text-align: center;
-    font-size:1.7rem;
-    line-height: 1.2;
-}
-
-.artist-overlay-btn-cerrar:hover{
-    cursor:pointer;
-}
-
-#artist-overlay-inner{
-    overflow-y:auto;
-    overflow-x:hidden;
-    height:90vh;
-    width:90%;
-    background-color:black;
-    padding:.5rem;
-}
-
-#artist-overlay-inner::-webkit-scrollbar{
-    width: 5px;
-}
-
-#artist-overlay-inner::-webkit-scrollbar-track{
-    background: black;
-}
-
-#artist-overlay-inner::-webkit-scrollbar-thumb{
-    background: var(--main-color);
-}
-
-#artist-overlay-inner > p {
-    display:block;
-    width:100%;    
-    text-align: justify !important;
-}
-
-#artist-overlay-inner > p > img , #artist-overlay-inner > p > a > img  {
-    width:100%;
-}
-
 
 .artist-full-lineup-wrapper{
     display: flex;
@@ -138,10 +133,6 @@
 @media (min-width:599px){
     #artist-overlay-inner{
         width:79%;
-    }
-
-    .artist-item{
-        width: 40%;
     }
 }
 
@@ -162,23 +153,15 @@
 }
 
 @media (min-width:999px){
-    .artist-item{
-        width: 30%;
-    }
-
     #artist-overlay-inner{
         width:50%;
     }
 
-    .artist-inner-wrapper{
+    .artist-wrapper{
         margin-top:2rem;
     }
     
     .artist-full-lineup-imagen{
         width: 78%;
     }
-}
-
-@media (min-width:1199px){
-    
 }
