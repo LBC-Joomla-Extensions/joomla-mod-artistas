@@ -19,6 +19,7 @@ class modArtistas{
         $query->select('*');
         $query->from('#__content');
         $query->where('catid="'.$id.'" AND language="'. JFactory::getLanguage()->getTag() . '" AND state="1"');
+        $query->order('title asc');
 
         $db->setQuery((string)$query);
         $res = $db->loadObjectList();
