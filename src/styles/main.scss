@@ -9,7 +9,7 @@
 
 .artist{
 
-    &-wrapper{
+    &-wrapper > div{
         width: 100%;
     
         display: grid;
@@ -17,6 +17,13 @@
         gap: 2rem;
     }
 
+    &_section_title{
+        margin: 2rem auto;
+        font-size: 3rem;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    
     &-item{    
         display: flex;
         flex-direction: column;

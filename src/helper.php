@@ -11,21 +11,32 @@ use Dickinsonjl\Lorum\Lorum;
 class modArtistas{
 
     
-    public static function getArticulos(&$params){
+    public static function getArticulos(&$params, $categoria = ""){
         $db = JFactory::getDbo();
-        $id = $params["categoria"];
+        
+        switch ($categoria) {
+            case 'main':
+                $id = $params["categoria_main"];
+                break;
+            case 'alternative':
+                $id = $params["categoria_alternative"];
+                break;
+            default:
+                $id = $params["categoria"];
+                break;
+        }        
 
         $query = $db->getQuery(true);
         $query->select('*');
         $query->from('#__content');
-        $query->where('catid="'.$id.'" AND language="'. JFactory::getLanguage()->getTag() . '" AND state="1"');
+        $query->where('catid="'.$id.'" AND (language="'. JFactory::getLanguage()->getTag() . '" OR language="*") AND state="1"');
         $query->order('title asc');
 
         $db->setQuery((string)$query);
         $res = $db->loadObjectList();
 
         return $res;
-    }
+    }    
     
 }
 ?>

@@ -24,6 +24,20 @@
                     label="Categoria" 
                     description="Categoria de los articulos de artistas">
 				</field>
+                <field 
+                    name="categoria_main" 
+                    type="category"      
+                    extension="com_content"                 
+                    label="Categoria Main" 
+                    description="Categoria de los articulos de artistas main">
+				</field>
+                <field 
+                    name="categoria_alternative" 
+                    type="category"      
+                    extension="com_content"                 
+                    label="Categoria Alterntive" 
+                    description="Categoria de los articulos de artistas alternative">
+				</field>
             </fieldset>
         </fields>
     </config>
