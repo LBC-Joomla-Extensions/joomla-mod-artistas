@@ -38,6 +38,17 @@
                     label="Categoria Alterntive" 
                     description="Categoria de los articulos de artistas alternative">
 				</field>
+                <field
+                    name="mostrar_titulo"
+                    type="radio"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                    label="Mostrar nombre"
+                    description="Mostar nombre del artista"
+                >
+                    <option value="1">JYES</option>
+					<option value="0">JNO</option>
+                </field>
             </fieldset>
         </fields>
     </config>
