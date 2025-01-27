@@ -17,6 +17,9 @@ $list = modArtistas::getArticulos($params);
 $list_main = modArtistas::getArticulos($params, 'main');
 $list_alternative = modArtistas::getArticulos($params, 'alternative');
 $mostrar_titulo = $params['mostrar_titulo'];
+$mostrar_lineup_texto = $params['mostrar_lineup_texto'];
+$bloques_texto_lineup = $params['lineup_blocks'];
+$separador = $params['separador_lineup_blocks'];
 
 $res = array();
 
@@ -39,7 +42,6 @@ $res = array();
     echo "</div>";
     ?>
 
-
     <?php
     if (!empty($list_alternative)) {
         echo "
@@ -47,7 +49,7 @@ $res = array();
     <div>
     ";
         $i = 0;
-        foreach ($list_main as $item) {
+        foreach ($list_alternative as $item) {
             write_item($item, $i, $mostrar_titulo);
             $i++;
         }
@@ -55,9 +57,47 @@ $res = array();
     echo "</div>";
     ?>
 
+    <?php
+    if ($mostrar_lineup_texto == 1) {
+        echo "<div class='artist_lineup_text'>";
 
+        $alternativo = false;
+
+        foreach ($bloques_texto_lineup as $key => $bloque) {
+            $contenido = $bloque->bloque_lineup->bloque_lineup_contenido;
+            $lineup = explode(",", $contenido);
+            $last_in_lineup = trim(end($lineup));
+
+            echo "<div class='artist_lineup_text__bloque'><p>";
+
+            foreach ($lineup as $key => $value) {
+                $class_span = "artist_lineup_text__artista";
+                $value = trim($value);
+
+                if ($alternativo) {
+                    $class_span .= " artist_lineup_text__artista--alt";
+                }
+
+                $alternativo = !$alternativo;
+
+                echo "<span class='{$class_span}'>{$value}</span>";
+
+                if ($value != $last_in_lineup) {
+                    echo " {$separador} ";
+                }
+            }
+
+            echo "</p></div>";
+        }
+        echo "
+        </div>
+        ";
+    }
+    ?>
 
 </div>
+
+
 
 <div id='artist-overlay' class='artist-overlay invisible'>
     <div id='artist-overlay-inner' class='artist-overlay__inner'>

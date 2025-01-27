@@ -51,6 +51,28 @@
             margin-bottom: 1rem;
         }
     }
+
+    &_lineup_text{
+        // background-color: pink;
+        &__bloque{
+            font-size: 1.75rem;
+            margin: 3rem auto;
+            text-align: center;
+
+            &:first-child{
+                font-size: 2rem;
+            }
+        }
+
+        &__artista{
+            text-transform: uppercase;
+            color: var(--color-accent-700);
+
+            &--alt{
+                color: var(--color-accent-900);
+            }
+        }
+    }
 }
 
 

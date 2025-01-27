@@ -49,6 +49,54 @@
                     <option value="1">JYES</option>
 					<option value="0">JNO</option>
                 </field>
+
+                <field
+                    name="mostrar_lineup_texto"
+                    type="radio"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                    label="Mostrar Lineup en texto"
+                    description="Mostrar la lista de artistas en modo texto"
+                >
+                    <option value="1">JYES</option>
+					<option value="0">JNO</option>
+                </field>
+
+                <field
+                    name="separador_lineup_blocks"
+                    type="text"
+                    default="-"
+                    label="Separador (Modo texto)"                    
+                    description="Define los caracteres que separan a los artistas en el lineup de texto (Ej: Para caracter - mostrará Artista 1 - Artista 2 - ...)"
+                    showon="mostrar_lineup_texto:1"
+                >
+                </field>
+                <field
+                    name="lineup_blocks"
+                    type="subform"
+                    multiple="true"
+                    label="Lineup (Sólo texto)"
+                    description="Crea diferentes bloques y añade la lista de artistas para mostrar separadas por comas"
+                    showon="mostrar_lineup_texto:1">
+                    <form>
+                        <fields name="bloque_lineup">
+                            <fieldset name="default">
+                                <!-- <field
+                                    name="bloque_lineup_titulo"
+                                    type="text"
+                                    label="Grupo"
+                                    description="Los valores pueden ser Main, Alternative, etc..." /> -->
+                                <field
+                                    name="bloque_lineup_contenido"
+                                    type="textarea"
+                                    rows="5"
+                                    label="Contenido"
+                                    description="Lista de artistas separadas por comas" />
+                                <!-- Agrega más campos según sea necesario -->
+                            </fieldset>
+                        </fields>
+                    </form>
+                </field>
             </fieldset>
         </fields>
     </config>
