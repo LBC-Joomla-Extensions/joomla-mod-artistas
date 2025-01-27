@@ -106,6 +106,17 @@ $res = array();
     <div class='artist-overlay__btn' onclick='cerrarOverlay()'>X</div>
 </div>
 
+<script>
+    // Escuchar el evento 'keydown' en todo el documento
+    document.addEventListener('keydown', function(event) {
+        // Verificar si la tecla presionada es 'Escape' (o 'Esc')
+        if (event.key === 'Escape' || event.key === 'Esc') {
+            // Llamar a la función para cerrar el overlay
+            cerrarOverlay();
+        }
+    });
+</script>
+
 <?php
 function write_item($item, $index, $mostrar_titulo = true)
 {
