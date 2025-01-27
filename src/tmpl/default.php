@@ -2,12 +2,16 @@
 
 defined("_JEXEC") or die;
 
-JHtml::_('jquery.framework');
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
 
-$doc = JFactory::getDocument();
+$doc = Factory::getApplication()->getDocument();
 
-$doc->addStyleSheet(JURI::base() . "./modules/mod_artistas/css/main.css");
-$doc->addScript(JURI::base() . "./modules/mod_artistas/js/main.js", "text/javascript");
+// Añadir la hoja de estilo y el script
+$doc->addStyleSheet(Uri::root() . 'modules/mod_artistas/css/main.css');
+$doc->addScript(Uri::root() . 'modules/mod_artistas/js/main.js', ['type' => 'text/javascript']);
+
+
 
 //$idCategoria=$params['categoria'];
 require_once __DIR__ . "/../helper.php";
@@ -103,7 +107,7 @@ $res = array();
     <div id='artist-overlay-inner' class='artist-overlay__inner'>
 
     </div>
-    <div class='artist-overlay__btn' onclick='cerrarOverlay()'>X</div>
+    <div class='artist-overlay__btn'>X</div>
 </div>
 
 <script>
@@ -114,6 +118,28 @@ $res = array();
             // Llamar a la función para cerrar el overlay
             cerrarOverlay();
         }
+    });
+</script>
+
+<script>
+    // Selecciona el overlay y su contenido interno
+    var overlay = document.getElementById('artist-overlay');
+    var overlayInner = document.getElementById('artist-overlay-inner');
+
+    // Agrega un event listener al overlay
+    overlay.addEventListener('click', function(event) {
+        // Verifica si el clic fue en el overlay y no en su contenido interno
+        if (event.target === overlay) {
+            cerrarOverlay();
+        }
+    });
+
+    // Selecciona el botón de cierre
+    var closeButton = document.querySelector('.artist-overlay__btn');
+
+    // Agrega un event listener al botón
+    closeButton.addEventListener('click', function() {
+        cerrarOverlay();
     });
 </script>
 
@@ -130,7 +156,7 @@ function write_item($item, $index, $mostrar_titulo = true)
         <img
             id='artist-item-image-<?= $index ?>'
             class="artist-item__image"
-            src='<?= JURI::base() . $res[$index]["intro"] ?>'
+            src='<?= Uri::root() . $res[$index]["intro"] ?>'
             onclick='showArtist(<?= $index ?>)' />
         <h3 class="artist-item__title">
             <?php
