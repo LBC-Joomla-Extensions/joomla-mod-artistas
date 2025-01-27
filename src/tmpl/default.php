@@ -3,13 +3,19 @@
 defined("_JEXEC") or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Application\WebApplication;
 use Joomla\CMS\Uri\Uri;
 
-$doc = Factory::getApplication()->getDocument();
+/** @var WebApplication */
+$app = Factory::getApplication();
+$wa = $app->getDocument()->getWebAssetManager();
 
-// Añadir la hoja de estilo y el script
-$doc->addStyleSheet(Uri::root() . 'modules/mod_artistas/css/main.css');
-$doc->addScript(Uri::root() . 'modules/mod_artistas/js/main.js', ['type' => 'text/javascript']);
+
+// Registrar y utilizar la hoja de estilo
+$wa->registerAndUseStyle('mod_artistas_main_css', Uri::root() . 'modules/mod_artistas/css/main.css');
+
+// Registrar y utilizar el script
+$wa->registerAndUseScript('mod_artistas_main_js', Uri::root() . 'modules/mod_artistas/js/main.js', [], ['type' => 'text/javascript']);
 
 
 
