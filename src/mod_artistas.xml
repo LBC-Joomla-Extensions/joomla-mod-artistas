@@ -97,6 +97,16 @@
                         </fields>
                     </form>
                 </field>
+                                <!-- 
+                El media es incompatibles con el File Browser de JCE. 
+                Si JCE está instalado ir al componente JCE -> Perfil Usuario -> Features & Layout -> Additional Features -> Uncheck File Browser 
+                -->
+                <field 
+                    name="lineup_imagen" 
+                    type="media"                     
+                    label="Lineup (Imágen)"
+                    description="Imagen del Lineup"
+                />
             </fieldset>
         </fields>
     </config>

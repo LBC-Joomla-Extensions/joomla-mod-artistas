@@ -73,6 +73,14 @@
             }
         }
     }
+
+    &_lineup_image{
+        &__wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }
 
 

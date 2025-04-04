@@ -30,6 +30,7 @@ $mostrar_titulo = $params['mostrar_titulo'];
 $mostrar_lineup_texto = $params['mostrar_lineup_texto'];
 $bloques_texto_lineup = $params['lineup_blocks'];
 $separador = $params['separador_lineup_blocks'];
+$imagen_lineup = $params['lineup_imagen'];
 
 $res = array();
 
@@ -104,6 +105,13 @@ $res = array();
         ";
     }
     ?>
+
+    <?php
+    if ($imagen_lineup != '') {
+        echo "<div class='artist_lineup_image__wrapper'><img class='artist_lineup_image' src='/{$imagen_lineup}' alt='Lineup' /></div>";
+    }
+    ?>
+
 
 </div>
 
